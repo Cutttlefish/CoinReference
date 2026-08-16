@@ -14,3 +14,10 @@ def calculate_change(cents, coins=COIN_TYPES):
     return coin * count + calculate_change(remainder, coins[1:])
    
 
+def make_change_reference(cents_counter):
+    """Build and return a "value | coins" reference table for every cent value from 1 to `cents_counter`."""
+    return ("\n".join(map(lambda x: f"{x} | {calculate_change(x)}", range(1, cents_counter + 1))))
+
+
+if __name__ == "__main__":
+    print(make_change_reference(100))
